@@ -10,6 +10,20 @@ public class Client {
     private List<Address> addresses;
     private List<Account> accounts;
 
+    public Client() {
+    }
+
+    public Client(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public void addAccout(Account account) {
+        if (!accounts.contains(account)) {
+            accounts.add(account);
+        }
+    }
+
     public Long getId() {
         return id;
     }

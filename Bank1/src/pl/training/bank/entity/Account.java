@@ -18,6 +18,13 @@ public class Account {
         this.balance = balance;
     }
 
+    public void addClient(Client client) {
+        if (!clients.contains(client)) {
+            clients.add(client);
+            client.addAccout(this);
+        }
+    }
+
     public Long getId() {
         return id;
     }
