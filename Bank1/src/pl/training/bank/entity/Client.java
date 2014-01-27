@@ -1,5 +1,6 @@
 package pl.training.bank.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -7,8 +8,8 @@ public class Client {
     private Long id;
     private String firstName;
     private String lastName;
-    private List<Address> addresses;
-    private List<Account> accounts;
+    private List<Address> addresses = new ArrayList<Address>();
+    private List<Account> accounts = new ArrayList<Account>();
 
     public Client() {
     }

@@ -1,6 +1,7 @@
 package pl.training.bank.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
@@ -8,7 +9,7 @@ public class Account {
     private Long id;
     private String number;
     private BigDecimal balance;
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<Client>();
 
     public Account() {
     }
