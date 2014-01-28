@@ -15,7 +15,7 @@ public interface Bank {
 
     Client addClient(Client client);
 
-    Account addAccount(Account account);
+    Account createAccount();
 
     void assignClientToAccount(Long clientId, Long accountId) throws BankException;
 

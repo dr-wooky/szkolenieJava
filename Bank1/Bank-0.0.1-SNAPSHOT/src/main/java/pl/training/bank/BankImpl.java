@@ -49,8 +49,10 @@ public class BankImpl implements Bank{
     }
 
     @Override
-    public Account addAccount(Account account) {
+    public Account createAccount() {
+        Account account = new Account();
         account.setNumber(accountNumberGenerator.next());
+        account.setBalance(BigDecimal.ZERO);
         accounts.save(account);
         return account;
     }
