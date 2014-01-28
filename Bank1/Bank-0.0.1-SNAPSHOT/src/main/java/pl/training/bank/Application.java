@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class Application {
 
     public static void main(String[] args) throws BankException{
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bank.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bank.xml", "bank-repository.xml");
         Bank bank = applicationContext.getBean(Bank.class);
 
         Account account1 = bank.createAccount();
