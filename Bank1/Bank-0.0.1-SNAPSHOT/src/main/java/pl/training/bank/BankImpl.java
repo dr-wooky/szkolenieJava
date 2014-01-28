@@ -10,14 +10,14 @@ import pl.training.bank.service.repository.Accounts;
 
 import java.math.BigDecimal;
 
-@Component
+//@Component
 public class BankImpl implements Bank{
 
     private Accounts accounts;
     private Clients clients;
     private AccountNumberGenerator accountNumberGenerator;
 
-    @Autowired
+    //@Autowired
     public BankImpl(Accounts accounts, Clients clients, AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;
