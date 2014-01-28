@@ -46,24 +46,21 @@ public class CashFlowsLogger {
         log(get("operationStarted") + get(joinPoint.getSignature().getName()));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.payInCashToAccount(toAccountNumber, amount))"
+    @Before(value = "execution(* pl.training.bank.Bank.payInCashToAccount(..)) && args(toAccountNumber, amount)"
             , argNames = "toAccountNumber, amount")
     public void payIn(String toAccountNumber, BigDecimal amount) {
-        startLogEntry("payIn");
         log(toAccountNumber + " <= " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(fromAccountNumber, amount))"
+    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(..) && args(fromAccountNumber, amount))"
             , argNames = "fromAccountNumber, amount")
     public void payOut(String fromAccountNumber, BigDecimal amount) {
-        startLogEntry("payOut");
         log(fromAccountNumber + " => " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.transferCash(fromAccountNumber, toAccountNumber, amount))"
+    @Before(value = "execution(* pl.training.bank.Bank.transferCash(..) && args(fromAccountNumber, toAccountNumber, amount))"
             , argNames = "fromAccountNumber, toAccountNumber, amount")
     public void transfer(String fromAccountNumber, String toAccountNumber, BigDecimal amount) {
-        startLogEntry("transfer");
         log(fromAccountNumber + " => " + formatCurrency(amount) + " => " + toAccountNumber );
     }
 
