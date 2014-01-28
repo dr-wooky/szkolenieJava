@@ -73,4 +73,10 @@ public class BankImpl implements Bank{
         Account account = accounts.getById(accountId);
         account.addClient(client);
     }
+
+    @Override
+    public BigDecimal getBalance(String accountNumber) throws BankException{
+        Account account = accounts.getByNumber(accountNumber);
+        return account.getBalance();
+    }
 }

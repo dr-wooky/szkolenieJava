@@ -19,4 +19,6 @@ public interface Bank {
 
     void assignClientToAccount(Long clientId, Long accountId) throws BankException;
 
+    BigDecimal getBalance(String accountNumber) throws BankException;
+
 }

@@ -28,5 +28,8 @@ public class Application {
         } catch (BankException e) {
             System.out.println(e);
         }
+
+        System.out.println(bank.getBalance(account1.getNumber()));
+        System.out.println(bank.getBalance(account2.getNumber()));
     }
 }
