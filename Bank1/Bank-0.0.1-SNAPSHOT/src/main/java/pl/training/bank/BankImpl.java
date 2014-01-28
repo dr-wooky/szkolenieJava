@@ -22,7 +22,7 @@ public class BankImpl implements Bank{
     public BankImpl(
             @DAO(type = DAO.Type.JDBC) Accounts accounts,
             @DAO(type = DAO.Type.JDBC) Clients clients,
-            AccountNumberGenerator accountNumberGenerator) {
+            @DAO(type = DAO.Type.JDBC) AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;
         this.accountNumberGenerator = accountNumberGenerator;

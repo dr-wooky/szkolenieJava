@@ -28,9 +28,5 @@ public class Application {
         } catch (BankException e) {
             System.out.println(e);
         }
-
-        System.out.println(account1.getBalance());
-        System.out.println(account2.getBalance());
-
     }
 }
