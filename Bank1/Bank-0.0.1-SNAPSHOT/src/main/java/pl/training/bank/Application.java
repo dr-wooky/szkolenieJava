@@ -14,7 +14,7 @@ public class Application {
         Bank bank = applicationContext.getBean(Bank.class);
 
         Account account1 = bank.createAccount();
-        bank.payInCashToAccount(account1.getNumber(), new BigDecimal(10001));
+        bank.payInCashToAccount(account1.getNumber(), new BigDecimal(10002));
 
         Client client1 = new Client();
         client1.setFirstName("Ania");

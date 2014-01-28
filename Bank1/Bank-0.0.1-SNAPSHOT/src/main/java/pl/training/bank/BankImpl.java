@@ -1,5 +1,7 @@
 package pl.training.bank;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.training.bank.service.repository.Clients;
 import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
@@ -8,12 +10,14 @@ import pl.training.bank.service.repository.Accounts;
 
 import java.math.BigDecimal;
 
+@Component
 public class BankImpl implements Bank{
 
     private Accounts accounts;
     private Clients clients;
     private AccountNumberGenerator accountNumberGenerator;
 
+    @Autowired
     public BankImpl(Accounts accounts, Clients clients, AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;

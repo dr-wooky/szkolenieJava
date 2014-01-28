@@ -1,11 +1,13 @@
 package pl.training.bank.service.repository;
 
+import org.springframework.stereotype.Repository;
 import pl.training.bank.entity.Account;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class InMemoryAccounts implements Accounts {
 
     private AtomicLong nextId = new AtomicLong();
