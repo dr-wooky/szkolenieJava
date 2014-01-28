@@ -1,5 +1,6 @@
 package pl.training.bank.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -35,13 +36,14 @@ public class CashFlowsLogger {
         return  messageSource.getMessage(key, params, Locale.getDefault());
     }
 
-    private void startLogEntry(String operationName) {
-        log(ENTRY_SEPARATOR);
-        log(get("operationStarted") + get(operationName));
-    }
-
     private String formatCurrency(BigDecimal  amount) {
         return NumberFormat.getCurrencyInstance().format(amount);
+    }
+
+    @Before("financialOperation()")
+    public void startLogEntry(JoinPoint joinPoint) {
+        log(ENTRY_SEPARATOR);
+        log(get("operationStarted") + get(joinPoint.getSignature().getName()));
     }
 
     @Before(value = "execution(* pl.training.bank.Bank.payInCashToAccount(toAccountNumber, amount))"
