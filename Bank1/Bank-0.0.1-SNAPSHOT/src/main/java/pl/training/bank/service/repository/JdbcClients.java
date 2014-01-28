@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 //@Repository
 public class JdbcClients implements Clients{
 
-    private static final String SQL_INSERT = "insert into clients values (null, :firstName, :lastName";
+    private static final String SQL_INSERT = "insert into clients values (null, :firstName, :lastName)";
     private static final String SQL_UPDATE
         = "update clients set firstName = :firstName, lastName = :lastName where id = :id";
     private static final String SQL_GET_BY_ID = "select * from clients where id = :id";
@@ -36,7 +36,7 @@ public class JdbcClients implements Clients{
         int result = jdbcTemplate.update(SQL_UPDATE, params);
         if (result == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            jdbcTemplate.update(SQL_INSERT, params);
+            jdbcTemplate.update(SQL_INSERT, params, keyHolder);
             client.setId(keyHolder.getKey().longValue());
         }
         return client;

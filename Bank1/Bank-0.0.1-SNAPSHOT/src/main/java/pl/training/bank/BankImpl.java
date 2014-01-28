@@ -32,12 +32,14 @@ public class BankImpl implements Bank{
     public void payInCashToAccount(String toAccountNumber, BigDecimal amount) throws BankException {
         Account account = accounts.getByNumber(toAccountNumber);
         account.payIn(amount);
+        accounts.save(account);
     }
 
     @Override
     public void payOutCashFromAccount(String fromAccountNumber, BigDecimal amount) throws BankException {
         Account account = accounts.getByNumber(fromAccountNumber);
         account.payOut(amount);
+        accounts.save(account);
     }
 
     @Override

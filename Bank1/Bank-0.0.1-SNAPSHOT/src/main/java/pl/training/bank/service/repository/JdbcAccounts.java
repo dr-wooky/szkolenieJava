@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @DAO(type = DAO.Type.JDBC)
 public class JdbcAccounts implements Accounts {
 
-    private static final String SQL_INSERT = "insert into accounts values (null, :number, :balance";
+    private static final String SQL_INSERT = "insert into accounts values (null, :number, :balance)";
     private static final String SQL_UPDATE
             = "update accounts set number = :number, balance = :balance where id = :id";
     private static final String SQL_GET_BY_ID = "select * from accounts where id = :id";
@@ -39,8 +39,9 @@ public class JdbcAccounts implements Accounts {
         int result = jdbcTemplate.update(SQL_UPDATE, params);
         if (result == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            jdbcTemplate.update(SQL_INSERT, params);
-            account.setId(keyHolder.getKey().longValue());
+            jdbcTemplate.update(SQL_INSERT, params, keyHolder);
+            Long id = keyHolder.getKey().longValue();
+            account.setId(id);
         }
         return account;
     }
