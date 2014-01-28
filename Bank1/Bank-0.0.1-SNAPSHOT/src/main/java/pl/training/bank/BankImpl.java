@@ -7,18 +7,22 @@ import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
 import pl.training.bank.service.AccountNumberGenerator;
 import pl.training.bank.service.repository.Accounts;
+import pl.training.bank.service.repository.DAO;
 
 import java.math.BigDecimal;
 
-//@Component
+@Component
 public class BankImpl implements Bank{
 
     private Accounts accounts;
     private Clients clients;
     private AccountNumberGenerator accountNumberGenerator;
 
-    //@Autowired
-    public BankImpl(Accounts accounts, Clients clients, AccountNumberGenerator accountNumberGenerator) {
+    @Autowired
+    public BankImpl(
+            @DAO(type = DAO.Type.JDBC) Accounts accounts,
+            @DAO(type = DAO.Type.JDBC) Clients clients,
+            AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;
         this.accountNumberGenerator = accountNumberGenerator;

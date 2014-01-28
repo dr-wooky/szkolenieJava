@@ -13,8 +13,9 @@ import pl.training.bank.service.repository.mapper.ClientMapper;
 
 import javax.sql.DataSource;
 
-@Qualifier("jdbc")
-@Repository
+@DAO(type = DAO.Type.JDBC)
+//@Qualifier("jdbc")
+//@Repository
 public class JdbcClients implements Clients{
 
     private static final String SQL_INSERT = "insert into clients values (null, :firstName, :lastName";

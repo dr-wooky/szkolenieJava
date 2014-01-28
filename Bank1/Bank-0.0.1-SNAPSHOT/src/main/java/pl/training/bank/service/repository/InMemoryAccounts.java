@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
+@DAO
 public class InMemoryAccounts implements Accounts {
 
     private AtomicLong nextId = new AtomicLong();

@@ -13,8 +13,10 @@ import pl.training.bank.service.repository.mapper.AccountMapper;
 
 import javax.sql.DataSource;
 
-@Qualifier("jdbc")
-@Repository
+
+//@Qualifier("jdbc")
+//@Repository
+@DAO(type = DAO.Type.JDBC)
 public class JdbcAccounts implements Accounts {
 
     private static final String SQL_INSERT = "insert into accounts values (null, :number, :balance";
