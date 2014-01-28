@@ -1,7 +1,7 @@
 package pl.training.bank;
 
-import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
+import pl.training.bank.entity.Account;
 
 import java.math.BigDecimal;
 

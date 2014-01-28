@@ -1,10 +1,10 @@
 package pl.training.bank;
 
+import pl.training.bank.service.repository.Clients;
 import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
 import pl.training.bank.service.AccountNumberGenerator;
 import pl.training.bank.service.repository.Accounts;
-import pl.training.bank.service.repository.Clients;
 
 import java.math.BigDecimal;
 
