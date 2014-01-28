@@ -40,42 +40,38 @@ public class CashFlowsLogger {
         return NumberFormat.getCurrencyInstance().format(amount);
     }
 
-    @Before("financialOperation()")
-    public void startLogEntry(JoinPoint joinPoint) {
+    private void startLogEntry(JoinPoint joinPoint) {
         log(ENTRY_SEPARATOR);
         log(get("operationStarted") + get(joinPoint.getSignature().getName()));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.payInCashToAccount(..)) && args(toAccountNumber, amount)"
-            , argNames = "toAccountNumber, amount")
-    public void payIn(String toAccountNumber, BigDecimal amount) {
+    @Before(value = "execution(* pl.training.bank.Bank.payInCashToAccount(..)) && args(toAccountNumber, amount)")
+    public void payIn(JoinPoint jointPoint, String toAccountNumber, BigDecimal amount) {
+        startLogEntry(jointPoint);
         log(toAccountNumber + " <= " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(..)) && args(fromAccountNumber, amount)"
-            , argNames = "fromAccountNumber, amount")
-    public void payOut(String fromAccountNumber, BigDecimal amount) {
+    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(..)) && args(fromAccountNumber, amount)")
+    public void payOut(JoinPoint jointPoint, String fromAccountNumber, BigDecimal amount) {
+        startLogEntry(jointPoint);
         log(fromAccountNumber + " => " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.transferCash(..)) && args(fromAccountNumber, toAccountNumber, amount)"
-            , argNames = "fromAccountNumber, toAccountNumber, amount")
-    public void transfer(String fromAccountNumber, String toAccountNumber, BigDecimal amount) {
+    @Before(value = "execution(* pl.training.bank.Bank.transferCash(..)) && args(fromAccountNumber, toAccountNumber, amount)")
+    public void transfer(JoinPoint jointPoint, String fromAccountNumber, String toAccountNumber, BigDecimal amount) {
+        startLogEntry(jointPoint);
         log(fromAccountNumber + " => " + formatCurrency(amount) + " => " + toAccountNumber );
     }
 
     @AfterReturning("financialOperation()")
     public void afterSuccess() {
         log(get("success"));
+        log(ENTRY_SEPARATOR);
     }
 
     @AfterThrowing(value = "financialOperation()", throwing = "ex")
     public void afterFailure(BankException ex) {
         log(get("failure") + "(" + ex.getClass().getSimpleName() + ")");
-    }
-
-    @After("financialOperation()")
-    public void endLogEntry() {
         log(ENTRY_SEPARATOR);
     }
 
