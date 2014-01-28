@@ -18,4 +18,8 @@
     <context:annotation-config/>
     <context:component-scan base-package="pl.training"/>
 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
+    </bean>
+
 </beans>
