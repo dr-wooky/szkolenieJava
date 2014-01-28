@@ -24,7 +24,7 @@ public class CashFlowsLogger {
         this.messageSource = messageSource;
     }
 
-    @Pointcut("execution(* pl.training.bank.Bank.*Cash*(..)" )
+    @Pointcut("execution(* pl.training.bank.Bank.*Cash*(..))" )
     public void financialOperation() {
     }
 
@@ -52,13 +52,13 @@ public class CashFlowsLogger {
         log(toAccountNumber + " <= " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(..) && args(fromAccountNumber, amount))"
+    @Before(value = "execution(* pl.training.bank.Bank.payOutCashFromAccount(..)) && args(fromAccountNumber, amount)"
             , argNames = "fromAccountNumber, amount")
     public void payOut(String fromAccountNumber, BigDecimal amount) {
         log(fromAccountNumber + " => " + formatCurrency(amount));
     }
 
-    @Before(value = "execution(* pl.training.bank.Bank.transferCash(..) && args(fromAccountNumber, toAccountNumber, amount))"
+    @Before(value = "execution(* pl.training.bank.Bank.transferCash(..)) && args(fromAccountNumber, toAccountNumber, amount)"
             , argNames = "fromAccountNumber, toAccountNumber, amount")
     public void transfer(String fromAccountNumber, String toAccountNumber, BigDecimal amount) {
         log(fromAccountNumber + " => " + formatCurrency(amount) + " => " + toAccountNumber );

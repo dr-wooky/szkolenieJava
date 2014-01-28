@@ -20,7 +20,7 @@
     <aop:aspectj-autoproxy/>
     <context:component-scan base-package="pl.training"/>
 
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:messages"/>
     </bean>
 
