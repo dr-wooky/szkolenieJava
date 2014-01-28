@@ -1,5 +1,7 @@
 package pl.training.bank;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pl.training.bank.service.InMemoryNumberGenerator;
 import pl.training.bank.service.repository.Clients;
 import pl.training.bank.entity.Account;
@@ -14,11 +16,8 @@ import java.math.BigDecimal;
 public class Application {
 
     public static void main(String[] args) {
-        Accounts accounts = new InMemoryAccounts();
-        Clients clients = new InMemoryClients();
-        AccountNumberGenerator accountNumberGenerator = new InMemoryNumberGenerator();
-
-        Bank bank = new BankImpl(accounts, clients, accountNumberGenerator);
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bank.xml");
+        Bank bank = applicationContext.getBean(Bank.class);
 
         Account account1 = new Account();
         account1.setBalance(new BigDecimal(1000000));
