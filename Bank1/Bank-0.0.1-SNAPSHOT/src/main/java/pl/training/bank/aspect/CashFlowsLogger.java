@@ -1,11 +1,10 @@
 package pl.training.bank.aspect;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
+import pl.training.bank.BankException;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -22,6 +21,10 @@ public class CashFlowsLogger {
     @Autowired
     public CashFlowsLogger(MessageSource messageSource) {
         this.messageSource = messageSource;
+    }
+
+    @Pointcut("execution(* pl.training.bank.Bank.*Cash*(..)" )
+    public void financialOperation() {
     }
 
     private void log(String entry) {
@@ -61,4 +64,20 @@ public class CashFlowsLogger {
         startLogEntry("transfer");
         log(fromAccountNumber + " => " + formatCurrency(amount) + " => " + toAccountNumber );
     }
+
+    @AfterReturning("financialOperation()")
+    public void afterSuccess() {
+        log(get("success"));
+    }
+
+    @AfterThrowing(value = "financialOperation()", throwing = "ex")
+    public void afterFailure(BankException ex) {
+        log(get("failure") + "(" + ex.getClass().getSimpleName() + ")");
+    }
+
+    @After("financialOperation()")
+    public void endLogEntry() {
+        log(ENTRY_SEPARATOR);
+    }
+
 }
