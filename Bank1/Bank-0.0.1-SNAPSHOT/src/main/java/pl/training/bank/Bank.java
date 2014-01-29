@@ -1,10 +1,12 @@
 package pl.training.bank;
 
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.bank.entity.Client;
 import pl.training.bank.entity.Account;
 
 import java.math.BigDecimal;
 
+@Transactional(rollbackFor = BankException.class)
 public interface Bank {
 
     void payInCashToAccount(String toAccountNumber, BigDecimal amount) throws BankException;

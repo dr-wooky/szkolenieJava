@@ -48,15 +48,23 @@ public class JdbcAccounts implements Accounts {
 
     @Override
     public Account getById(Long id) throws EntityNotFoundException {
-        return jdbcTemplate.query(SQL_GET_BY_ID,
+        Account account = jdbcTemplate.query(SQL_GET_BY_ID,
                 new MapSqlParameterSource("id", id),
                 new AccountMapper());
+        if (account == null) {
+            throw new EntityNotFoundException();
+        }
+        return account;
     }
 
     @Override
     public Account getByNumber(String number) throws EntityNotFoundException {
-        return jdbcTemplate.query(SQL_GET_BY_NUMBER,
+        Account account = jdbcTemplate.query(SQL_GET_BY_NUMBER,
                 new MapSqlParameterSource("number", number),
                 new AccountMapper());
+        if (account == null) {
+            throw new EntityNotFoundException();
+        }
+        return account;
     }
 }

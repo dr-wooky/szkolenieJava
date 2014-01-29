@@ -2,6 +2,8 @@ package pl.training.bank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.bank.service.repository.Clients;
 import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
@@ -45,12 +47,12 @@ public class BankImpl implements Bank{
     @Override
     public void transferCash(String fromAccountNumber, String toAccountNumber, BigDecimal amount) throws BankException {
         payOutCashFromAccount(fromAccountNumber, amount);
-        try {
+//      try {
             payInCashToAccount(toAccountNumber, amount);
-        } catch (BankException e) {
-            payInCashToAccount(fromAccountNumber, amount);
-            throw new BankException();
-        }
+//        } catch (BankException e) {
+//            payInCashToAccount(fromAccountNumber, amount);
+//            throw new BankException();
+//        }
     }
 
     @Override

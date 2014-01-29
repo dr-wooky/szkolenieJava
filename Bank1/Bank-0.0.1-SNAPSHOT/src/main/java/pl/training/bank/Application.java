@@ -24,7 +24,7 @@ public class Application {
         Account account2 = bank.createAccount();
 
         try {
-            bank.transferCash(account1.getNumber(), account2.getNumber(), new BigDecimal(10000));
+            bank.transferCash(account1.getNumber(), /*account2.getNumber()*/ "sss", new BigDecimal(10000));
         } catch (BankException e) {
             System.out.println(e);
         }

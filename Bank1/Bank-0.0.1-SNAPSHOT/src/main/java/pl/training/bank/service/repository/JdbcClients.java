@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
 import pl.training.bank.service.repository.mapper.ClientMapper;
 
@@ -44,8 +45,12 @@ public class JdbcClients implements Clients{
 
     @Override
     public Client getById(Long id) throws EntityNotFoundException {
-        return jdbcTemplate.query(SQL_GET_BY_ID,
+        Client client = jdbcTemplate.query(SQL_GET_BY_ID,
                 new MapSqlParameterSource("id", id),
                 new ClientMapper());
+        if (client == null) {
+            throw new EntityNotFoundException();
+        }
+        return client;
     }
 }
