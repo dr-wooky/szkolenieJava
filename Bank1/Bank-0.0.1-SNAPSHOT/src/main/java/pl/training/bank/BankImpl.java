@@ -1,6 +1,7 @@
 package pl.training.bank;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,6 @@ import pl.training.bank.entity.Account;
 import pl.training.bank.entity.Client;
 import pl.training.bank.service.AccountNumberGenerator;
 import pl.training.bank.service.repository.Accounts;
-import pl.training.bank.service.repository.DAO;
 
 import java.math.BigDecimal;
 
@@ -22,9 +22,9 @@ public class BankImpl implements Bank{
 
     @Autowired
     public BankImpl(
-            @DAO(type = DAO.Type.JPA) Accounts accounts,
-            @DAO(type = DAO.Type.JPA) Clients clients,
-            @DAO(type = DAO.Type.JDBC) AccountNumberGenerator accountNumberGenerator) {
+            Accounts accounts,
+            Clients clients,
+            AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;
         this.accountNumberGenerator = accountNumberGenerator;
@@ -71,8 +71,8 @@ public class BankImpl implements Bank{
 
     @Override
     public void assignClientToAccount(Long clientId, Long accountId) throws BankException{
-        Client client = clients.getById(clientId);
-        Account account = accounts.getById(accountId);
+        Client client = clients.findOne(clientId);
+        Account account = accounts.findOne(accountId);
         account.addClient(client);
     }
 

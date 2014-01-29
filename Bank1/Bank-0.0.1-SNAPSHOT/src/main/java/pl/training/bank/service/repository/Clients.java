@@ -1,10 +1,7 @@
 package pl.training.bank.service.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.training.bank.entity.Client;
 
-public interface Clients {
-
-    Client save(Client client);
-    Client getById(Long id) throws EntityNotFoundException;
-
+public interface Clients extends JpaRepository<Client, Long>{
 }
