@@ -12,7 +12,7 @@
         <property name="transactionManager" ref="jtaTxManager"/>
     </bean>
 
-    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <!--<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
         <!--<constructor-arg name="sessionFactory" ref="sessionFactory"/>-->
     <!--</bean>-->

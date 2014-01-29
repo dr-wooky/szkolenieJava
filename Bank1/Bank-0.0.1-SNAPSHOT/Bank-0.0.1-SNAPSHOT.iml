@@ -44,6 +44,8 @@
     <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.7.4" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.main.extras:glassfish-embedded-all:4.0-b72" level="project" />
+    <orderEntry type="library" name="Maven: com.sun:tools-jar:1" level="project" />
   </component>
 </module>
 
