@@ -5,34 +5,46 @@
        xmlns:jee="http://www.springframework.org/schema/jee"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
+    <tx:annotation-driven/>
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/bank"/>
-    <jee:jndi-lookup id="jtaTxManager" jndi-name="java:appserver/TransactionManager"/>
 
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
-        <property name="transactionManager" ref="jtaTxManager"/>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="bank-pu"/>
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <!--<jee:jndi-lookup id="jtaTxManager" jndi-name="java:appserver/TransactionManager"/>-->
+
+    <!--<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">-->
+        <!--<property name="transactionManager" ref="jtaTxManager"/>-->
+    <!--</bean>-->
+
+
     <!--<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
         <!--<constructor-arg name="sessionFactory" ref="sessionFactory"/>-->
     <!--</bean>-->
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="jtaTransactionManager" ref="jtaTxManager"/>
-        <property name="packagesToScan">
-            <list>
-                <value>pl.training.bank.entity</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-            </props>
-        </property>
-    </bean>
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="jtaTransactionManager" ref="jtaTxManager"/>-->
+        <!--<property name="packagesToScan">-->
+            <!--<list>-->
+                <!--<value>pl.training.bank.entity</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <!--<prop key="hibernate.format_sql">true</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 </beans>

@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.training.bank.entity.Client;
 
-@DAO(type = DAO.Type.HIBERNATE)
+//@DAO(type = DAO.Type.HIBERNATE)
 public class HibernateClients implements Clients {
 
     private SessionFactory sessionFactory;
