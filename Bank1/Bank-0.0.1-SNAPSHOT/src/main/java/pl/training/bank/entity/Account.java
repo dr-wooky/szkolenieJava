@@ -6,9 +6,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "clients")
+@NamedQuery(name = Account.SELECT_BY_NUMBER, query = "select a from Account a where a.number = :number")
+@Table(name = "accounts")
 @Entity
 public class Account {
+
+    public static final String SELECT_BY_NUMBER = "selectByNumber";
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -16,7 +19,7 @@ public class Account {
     private String number;
     private BigDecimal balance;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "accoutns_clients",
+    @JoinTable(name = "accounts_clients",
         joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )

@@ -22,8 +22,8 @@ public class BankImpl implements Bank{
 
     @Autowired
     public BankImpl(
-            @DAO(type = DAO.Type.JDBC) Accounts accounts,
-            @DAO(type = DAO.Type.JDBC) Clients clients,
+            @DAO(type = DAO.Type.HIBERNATE) Accounts accounts,
+            @DAO(type = DAO.Type.HIBERNATE) Clients clients,
             @DAO(type = DAO.Type.JDBC) AccountNumberGenerator accountNumberGenerator) {
         this.accounts = accounts;
         this.clients = clients;
