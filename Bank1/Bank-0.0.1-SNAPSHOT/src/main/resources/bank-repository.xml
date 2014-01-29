@@ -6,14 +6,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/bank"/>
+    <jee:jndi-lookup id="jtaTxManager" jndi-name="java:appserver/TransactionManager"/>
 
-    <tx:annotation-driven transaction-manager="txManager"/>
-    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManager" ref="jtaTxManager"/>
     </bean>
+
+    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
+    <!--<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+        <!--<constructor-arg name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="jtaTransactionManager" ref="jtaTxManager"/>
         <property name="packagesToScan">
             <list>
                 <value>pl.training.bank.entity</value>
