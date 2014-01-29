@@ -71,8 +71,8 @@ public class BankImpl implements Bank{
 
     @Override
     public void assignClientToAccount(Long clientId, Long accountId) throws BankException{
-        Client client = clients.findOne(clientId);
-        Account account = accounts.findOne(accountId);
+        Client client = clients.getById(clientId);
+        Account account = accounts.getById(accountId);
         account.addClient(client);
     }
 
