@@ -1,14 +1,25 @@
 package pl.training.bank.entity;
 
+import javax.annotation.Generated;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(name = "clients")
+@Entity
 public class Account {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     private String number;
     private BigDecimal balance;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "accoutns_clients",
+        joinColumns = @JoinColumn(name = "account_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
+    )
     private List<Client> clients = new ArrayList<Client>();
 
     public Account() {

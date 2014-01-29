@@ -1,14 +1,22 @@
 package pl.training.bank.entity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(name = "clients")
+@Entity
 public class Client {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     private String firstName;
     private String lastName;
+    @JoinColumn(name = "client_id")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<Address>();
+    @ManyToMany(mappedBy = "clients")
     private List<Account> accounts = new ArrayList<Account>();
 
     public Client() {
