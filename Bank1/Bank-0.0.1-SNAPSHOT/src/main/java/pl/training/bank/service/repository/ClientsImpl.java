@@ -37,4 +37,8 @@ public class ClientsImpl implements Clients {
     public List<Client> findAll() {
         return clients.findAll();
     }
+
+    public void delete(Long id) {
+        clients.delete(id);
+    }
 }
