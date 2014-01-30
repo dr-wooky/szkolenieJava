@@ -1,6 +1,8 @@
 package pl.training.bank.entity;
 
 
+import pl.training.bank.validator.PostalCode;
+
 import javax.persistence.*;
 
 @Table(name = "addresses")
@@ -12,6 +14,7 @@ public class Address {
     private Long id;
     private String line1;
     private String line2;
+    @PostalCode
     @Column(name = "postal_code")
     private String postalCode;
     private String city;

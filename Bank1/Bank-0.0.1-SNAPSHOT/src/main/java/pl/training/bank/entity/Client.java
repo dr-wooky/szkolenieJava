@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Client {
     @Pattern(regexp = "[A-Za-z]+")
     private String firstName;
     private String lastName;
+    @Valid
     @JoinColumn(name = "client_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<Address>();
