@@ -24,7 +24,13 @@
     <context:component-scan base-package="pl.training"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:messages"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:messages</value>
+                <value>classpath:errors</value>
+            </list>
+        </property>
+
     </bean>
 
 </beans>

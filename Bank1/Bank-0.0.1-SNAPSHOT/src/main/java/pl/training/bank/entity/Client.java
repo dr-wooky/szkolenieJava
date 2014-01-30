@@ -1,6 +1,10 @@
 package pl.training.bank.entity;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +15,9 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    @NotEmpty
+    @Length(min = 3, max = 20)
+    @Pattern(regexp = "[A-Za-z]+")
     private String firstName;
     private String lastName;
     @JoinColumn(name = "client_id")
