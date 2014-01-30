@@ -27,6 +27,10 @@ public class Client {
         this.lastName = lastName;
     }
 
+    public void addAddress(Address address) {
+        addresses.add(address);
+    }
+
     public void addAccout(Account account) {
         if (!accounts.contains(account)) {
             accounts.add(account);
