@@ -28,4 +28,10 @@ public class ClientsController {
         modelAndView.addObject(client);
         return modelAndView;
     }
+
+    @RequestMapping(value = "addClient", method = RequestMethod.POST)
+    public String saveClient(Client client) {
+        bank.addClient(client);
+        return "redirect:home.html";
+    }
 }
