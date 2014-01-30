@@ -24,7 +24,11 @@ http://xmlns.jcp.org/xml/ns/javaee "
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:bank.xml classpath:bank-repository.xml</param-value>
+        <param-value>classpath:bank.xml classpath:bank-repository.xml classpath:bank-web.xml</param-value>
     </context-param>
+    
+    <welcome-file-list>
+        <welcome-file>/home.html</welcome-file>
+    </welcome-file-list>
 
 </web-app>
