@@ -1,0 +1,1 @@
+asadmin set configs.config.server-config.cdi-service.enable-implicit-cdi=false
