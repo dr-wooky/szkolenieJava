@@ -1,5 +1,6 @@
 package pl.training.bank.entity;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -78,6 +79,7 @@ public class Client {
         this.addresses = addresses;
     }
 
+    @JsonIgnore
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -93,7 +95,7 @@ public class Client {
 
         Client client = (Client) o;
 
-        if (accounts != null ? !accounts.equals(client.accounts) : client.accounts != null) return false;
+//        if (accounts != null ? !accounts.equals(client.accounts) : client.accounts != null) return false;
         if (addresses != null ? !addresses.equals(client.addresses) : client.addresses != null) return false;
         if (firstName != null ? !firstName.equals(client.firstName) : client.firstName != null) return false;
         if (lastName != null ? !lastName.equals(client.lastName) : client.lastName != null) return false;
@@ -106,7 +108,7 @@ public class Client {
         int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (addresses != null ? addresses.hashCode() : 0);
-        result = 31 * result + (accounts != null ? accounts.hashCode() : 0);
+//        result = 31 * result + (accounts != null ? accounts.hashCode() : 0);
         return result;
     }
 }

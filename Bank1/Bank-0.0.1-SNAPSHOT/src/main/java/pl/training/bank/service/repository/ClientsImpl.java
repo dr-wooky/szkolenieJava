@@ -7,6 +7,7 @@ import pl.training.bank.entity.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class ClientsImpl implements Clients {
@@ -31,5 +32,9 @@ public class ClientsImpl implements Clients {
             throw new EntityNotFoundException();
         }
         return client;
+    }
+
+    public List<Client> findAll() {
+        return clients.findAll();
     }
 }
