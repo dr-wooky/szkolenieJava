@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Bank-0.0.1-SNAPSHOT</groupId>
-    <artifactId>Bank-0.0.1-SNAPSHOT</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>Bank-0.0.5-SNAPSHOT</groupId>
+    <artifactId>Bank-0.0.5-SNAPSHOT</artifactId>
+    <version>5.0-SNAPSHOT</version>
+
+    <packaging>war</packaging>
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -32,6 +34,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -50,11 +62,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.0.Final</version>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.21</version>
-        </dependency>
         <dependency> <!-- local pooling -->
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -64,11 +71,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.7.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-            <version>4.0-b72</version>
         </dependency>
     </dependencies>
 
