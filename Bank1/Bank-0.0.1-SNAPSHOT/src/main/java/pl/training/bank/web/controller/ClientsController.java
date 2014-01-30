@@ -10,12 +10,12 @@ import pl.training.bank.entity.Address;
 import pl.training.bank.entity.Client;
 
 @Controller
-public class Clients {
+public class ClientsController {
 
     private Bank bank;
 
     @Autowired
-    public Clients(Bank bank) {
+    public ClientsController(Bank bank) {
         this.bank = bank;
     }
 
