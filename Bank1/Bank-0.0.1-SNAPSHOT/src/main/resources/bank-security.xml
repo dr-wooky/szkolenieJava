@@ -17,4 +17,8 @@
         <security:user name="ola" authorities="ROLE_USER" password="123"/>
     </security:user-service>
 
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="inMemoryProvider"/>
+    </security:authentication-manager>
+
 </beans>
