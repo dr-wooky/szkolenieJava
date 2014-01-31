@@ -6,10 +6,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client {
+public class Client implements Serializable {
 
     private Long id;
     private String firstName;

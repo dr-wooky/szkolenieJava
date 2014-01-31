@@ -6,7 +6,6 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 import pl.training.bank.entity.Client;
 import javax.jms.*;
-import java.io.Serializable;
 
 @Service
 public class Sender {
@@ -23,7 +22,7 @@ public class Sender {
             @Override
             public Message createMessage(Session session) throws JMSException {
                 ObjectMessage message = session.createObjectMessage();
-                message.setObject((Serializable) client);
+                message.setObject(client);
                 return message;
             }
         });
