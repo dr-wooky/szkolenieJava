@@ -26,7 +26,12 @@ http://xmlns.jcp.org/xml/ns/javaee "
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:bank.xml classpath:bank-repository.xml classpath:bank-web.xml</param-value>
     </context-param>
-    
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
     <welcome-file-list>
         <welcome-file>/home.html</welcome-file>
     </welcome-file-list>
