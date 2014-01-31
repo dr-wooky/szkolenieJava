@@ -37,6 +37,7 @@ public class ClientsController {
         if (result.hasErrors()) {
             return "newClientForm";
         }
+        client.setRole("ROLE_ADMIN");
         bank.addClient(client);
         return "redirect:home.html";
     }

@@ -27,7 +27,13 @@
         <security:user name="ola" authorities="ROLE_USER" password="202cb962ac59075b964b07152d234b70"/>
     </security:user-service>
 
-    <security:jdbc-user-service id="jdbcProvider" data-source-ref="dataSource"/>
+    <security:jdbc-user-service id="jdbcProvider" data-source-ref="dataSource"
+                                users-by-username-query="select login, password, 1 from clients where login = ?"
+                                authorities-by-username-query="select login, role from clients where login = ?"/>
+
+    <bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+        <constructor-arg name="secret" value="blabla"/>
+    </bean>
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="jdbcProvider"/>

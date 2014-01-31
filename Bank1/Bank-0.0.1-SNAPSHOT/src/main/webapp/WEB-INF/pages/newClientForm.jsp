@@ -12,6 +12,16 @@
     <sf:form method="POST" modelAttribute="client">
         <table>
             <tr>
+                <td>Login:</td>
+                <td><sf:input path="login"/></td>
+                <td><sf:errors path="login"/></td>
+            </tr>
+            <tr>
+                <td>Hasło:</td>
+                <td><sf:input path="password"/></td>
+                <td><sf:errors path="password"/></td>
+            </tr>
+            <tr>
                 <td>Imię:</td>
                 <td><sf:input path="firstName"/></td>
                 <td><sf:errors path="firstName"/></td>
