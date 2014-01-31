@@ -6,6 +6,8 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/bank.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/bank-repository.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/bank-web.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/bank-security.xml</file>
         </fileset>
       </configuration>
     </facet>

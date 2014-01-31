@@ -1,0 +1,16 @@
+
+CREATE TABLE `users` (
+  `username` varchar(45) COLLATE utf8_polish_ci NOT NULL,
+  `password` varchar(45) COLLATE utf8_polish_ci DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+CREATE  TABLE `authorities` (
+  `username` VARCHAR(45) NOT NULL ,
+  `authority` VARCHAR(45) NULL ,
+  PRIMARY KEY (`username`) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+insert into users values('maria', '123',1);
+insert into authorities values('maria', 'ROLE_ADMIN');

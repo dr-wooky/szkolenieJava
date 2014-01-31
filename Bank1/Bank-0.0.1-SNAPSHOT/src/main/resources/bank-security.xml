@@ -27,7 +27,10 @@
         <security:user name="ola" authorities="ROLE_USER" password="202cb962ac59075b964b07152d234b70"/>
     </security:user-service>
 
+    <security:jdbc-user-service id="jdbcProvider" data-source-ref="dataSource"/>
+
     <security:authentication-manager>
+        <security:authentication-provider user-service-ref="jdbcProvider"/>
         <security:authentication-provider user-service-ref="inMemoryProvider">
             <security:password-encoder hash="md5"/>
         </security:authentication-provider>
