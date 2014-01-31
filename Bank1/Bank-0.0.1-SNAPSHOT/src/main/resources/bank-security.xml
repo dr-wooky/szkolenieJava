@@ -17,17 +17,20 @@
                              login-processing-url="/login"
                              default-target-url="/home.html"/> <!-- login-processing-url zamiast domyślnego /j_spring_security_check-->
         <security:access-denied-handler error-page="/login.html"/>
+        <security:logout logout-url="/logout"/>
         <security:intercept-url pattern="/login.html" access="true" requires-channel="any"/>
         <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>
     </security:http>
 
     <security:user-service id="inMemoryProvider">
-        <security:user name="jan" authorities="ROLE_ADMIN" password="123"/>
-        <security:user name="ola" authorities="ROLE_USER" password="123"/>
+        <security:user name="jan" authorities="ROLE_ADMIN" password="202cb962ac59075b964b07152d234b70"/>
+        <security:user name="ola" authorities="ROLE_USER" password="202cb962ac59075b964b07152d234b70"/>
     </security:user-service>
 
     <security:authentication-manager>
-        <security:authentication-provider user-service-ref="inMemoryProvider"/>
+        <security:authentication-provider user-service-ref="inMemoryProvider">
+            <security:password-encoder hash="md5"/>
+        </security:authentication-provider>
     </security:authentication-manager>
 
 </beans>
