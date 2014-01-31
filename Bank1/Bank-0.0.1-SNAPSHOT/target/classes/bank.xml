@@ -21,6 +21,7 @@
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
     <aop:aspectj-autoproxy/>
+    <task:annotation-driven/>
     <context:component-scan base-package="pl.training"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -34,8 +35,8 @@
     </bean>
 
     <task:executor id="bankExecutor" pool-size="20"/>
-    <task:scheduled-tasks>
-        <task:scheduled ref="bankBalance" method="printBalance" fixed-rate="1000"/>
-    </task:scheduled-tasks>
+    <!--<task:scheduled-tasks>-->
+        <!--<task:scheduled ref="bankBalance" method="printBalance" fixed-rate="1000"/>-->
+    <!--</task:scheduled-tasks>-->
 
 </beans>

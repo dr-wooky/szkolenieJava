@@ -13,6 +13,6 @@ public interface AccountsJpa extends JpaRepository<Account, Long> {
     @Query("select max(a.number) from Account a")
     String getMaxNumber();
 
-    @Query("select sum(a.balance) from Accounts a")
+    @Query("select sum(a.balance) from Account a")
     BigDecimal getBankBalance();
 }
