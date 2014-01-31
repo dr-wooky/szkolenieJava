@@ -4,7 +4,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/beans/spring-jms.xsd">
 
     <!--
     <bean id="bank" class="pl.training.bank.BankImpl">
@@ -21,7 +22,7 @@
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
     <aop:aspectj-autoproxy/>
-    <task:annotation-driven/>
+    <!--<task:annotation-driven/>-->
     <context:component-scan base-package="pl.training"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -38,5 +39,18 @@
     <!--<task:scheduled-tasks>-->
         <!--<task:scheduled ref="bankBalance" method="printBalance" fixed-rate="1000"/>-->
     <!--</task:scheduled-tasks>-->
+
+    <jee:jndi-lookup id="connectionFactory" jndi-name="jms/connectionFactory"/>
+    <jee:jndi-lookup id="bankQueue" jndi-name="jms/bankQueue"/>
+
+    <!--<jms:listener-container connection-factory="connectionFactory">-->
+        <!--<jms:listener destination="bankQueue" ref="jmsClients"/>-->
+    <!--</jms:listener-container>-->
+
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="bankQueue"/>
+        <property name="messageListener" ref="jmsClients"/>
+    </bean>
 
 </beans>
