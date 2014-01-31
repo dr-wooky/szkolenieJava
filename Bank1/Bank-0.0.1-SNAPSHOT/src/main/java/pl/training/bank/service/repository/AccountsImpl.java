@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.training.bank.entity.Account;
 
+import java.math.BigDecimal;
+
 @Repository
 public class AccountsImpl implements Accounts {
 
@@ -37,5 +39,10 @@ public class AccountsImpl implements Accounts {
     @Override
     public String getMaxNumber() {
         return accounts.getMaxNumber();
+    }
+
+    @Override
+    public BigDecimal getBankBalance() {
+        return accounts.getBankBalance();
     }
 }
