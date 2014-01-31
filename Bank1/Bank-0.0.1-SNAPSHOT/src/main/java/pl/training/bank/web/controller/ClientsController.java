@@ -1,6 +1,7 @@
 package pl.training.bank.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,12 @@ import javax.validation.Valid;
 public class ClientsController {
 
     private Bank bank;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClientsController(Bank bank) {
+    public ClientsController(Bank bank, PasswordEncoder encoder) {
         this.bank = bank;
+        this.passwordEncoder = encoder;
     }
 
     @RequestMapping(value = "addClient", method = RequestMethod.GET)
@@ -37,6 +40,8 @@ public class ClientsController {
         if (result.hasErrors()) {
             return "newClientForm";
         }
+        String encodedPassword = passwordEncoder.encode(client.getPassword());
+        client.setPassword(encodedPassword);
         client.setRole("ROLE_ADMIN");
         bank.addClient(client);
         return "redirect:home.html";

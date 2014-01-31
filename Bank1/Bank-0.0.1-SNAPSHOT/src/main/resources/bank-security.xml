@@ -36,6 +36,9 @@
     </bean>
 
     <security:authentication-manager>
+        <security:authentication-provider user-service-ref="jdbcProvider">
+            <security:password-encoder ref="encoder"/>
+        </security:authentication-provider>
         <security:authentication-provider user-service-ref="jdbcProvider"/>
         <security:authentication-provider user-service-ref="inMemoryProvider">
             <security:password-encoder hash="md5"/>
